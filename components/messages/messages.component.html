@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-item>
+    <ion-buttons slot="start" class="ion-no-margin">
+      <ion-back-button color="tertiary"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ params.nick }}</ion-title>
+    <ion-avatar slot="end">
+      <img src="./../../../assets/shapes.svg">
+    </ion-avatar>
+  </ion-item>
+</ion-header>
+
+<ion-content class="ion-padding ion-justify-content-between">
+ <ion-content class="h-100">
+    <ion-item *ngFor="let msgs of friend.msg">
+      <ion-text color="secondary">{{ msgs }}</ion-text>
+    </ion-item>
+  </ion-content>
+  <ion-item class="input">
+    <ion-input placeholder="Escribe tu mensaje"></ion-input>
+    <ion-fab-button slot="end" size="small" color="tertiary">
+      <ion-icon name="arrow-round-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-item>
+</ion-content>

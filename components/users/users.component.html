@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title >NickUsuario</ion-title>
+    <ion-buttons slot="primary">
+        <ion-button (click)="popSettings($event)">
+          <ion-icon slot="icon-only" name="more"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="users">
+    <ion-list>
+      <ion-list-header>Conversaciones recientes</ion-list-header>
+      <ion-item *ngFor="let user of users" [routerLink]="['./messages', user.nick, user.uid]" routerLinkActive="router-link-active">
+        <ion-avatar slot="start">
+          <img [src]="user.avatar || './../../../assets/shapes.svg'">
+        </ion-avatar>
+        <ion-label [color]="online ? 'tertiary' : ''">
+          <h2>{{ user.nick }}</h2>
+          <p>{{ user.email }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Contactos</ion-list-header>
+      <ion-item *ngFor="let user of users" [routerLink]="['./messages', user.nick, user.uid]" routerLinkActive="router-link-active">
+        <ion-avatar slot="start">
+          <img [src]="user.avatar || './../../../assets/shapes.svg'">
+        </ion-avatar>
+        <ion-label>
+          <h2 color="primary">{{ user.nick }}</h2>
+          <p>{{ user.email }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+    <div *ngIf="!users">    
+      <ion-list>
+        <ion-list-header>
+          <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+        </ion-list-header>
+
+        <ion-item *ngFor="let x of [1, 1, 1]">
+          <ion-avatar slot="start">
+            <ion-skeleton-text animated>{{ x }}</ion-skeleton-text>
+          </ion-avatar>
+          <ion-label>
+            <h2>
+              <ion-skeleton-text animated style="width: 20%">{{ x }}</ion-skeleton-text>
+            </h2>
+            <p>
+              <ion-skeleton-text animated style="width: 60%">{{ x }}</ion-skeleton-text>
+            </p>
+          </ion-label>
+        </ion-item>
+
+      </ion-list>
+      <ion-list>
+          <ion-list-header>
+            <ion-skeleton-text animated style="width: 18%"></ion-skeleton-text>
+          </ion-list-header>
+  
+          <ion-item *ngFor="let y of [1, 1, 1, 1, 1, 1]">
+            <ion-avatar slot="start">
+              <ion-skeleton-text animated>{{ y }}</ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+              <h2>
+                <ion-skeleton-text animated style="width: 20%">{{ y }}</ion-skeleton-text>
+              </h2>
+              <p>
+                <ion-skeleton-text animated style="width: 60%">{{ y }}</ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+  
+        </ion-list>
+    </div>
+</ion-content>
+
