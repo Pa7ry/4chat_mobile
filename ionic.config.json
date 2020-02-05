@@ -1,5 +1,7 @@
 {
   "name": "4chat",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

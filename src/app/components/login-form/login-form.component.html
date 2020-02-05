@@ -1,5 +1,5 @@
-<ion-content padding>
-  <ion-button color="tertiary" expand="block">Entrar anónimamente</ion-button>
+<ion-content class="ion-padding">
+  <ion-button color="tertiary" expand="block" [routerLink]="['/chat', 'anonimous']" routerLinkActive="router-link-active">Entrar anónimamente</ion-button>
 
   <br>
 
@@ -9,32 +9,38 @@
 
   <br>
 
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input type="email" required></ion-input>
-  </ion-item>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit( register )">
 
-  <br>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="email" required></ion-input>
+    </ion-item>
+  
+    <br>
+  
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [type]="hide ? 'password' : 'text'" formControlName="password" required></ion-input>
+      <ion-icon [name]="hide ? 'eye' : 'eye-off'" (click)="hide = !hide" slot="end"  class="ion-align-self-center"></ion-icon>
+    </ion-item>
+  
+    <br>
+  
+    <ion-item *ngIf="register">
+      <ion-label position="floating">Nick</ion-label>
+      <ion-input type="text" formControlName="nick" required></ion-input>
+    </ion-item>
+  
+    <br>
+  
+    <ion-button color="tertiary" expand="block" (click)="onSubmit( register )">Siguiente</ion-button>
 
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input [type]="hide ? 'password' : 'text'" required></ion-input>
-    <ion-icon [name]="hide ? 'eye' : 'eye-off'" (click)="hide = !hide" slot="end"  align-self-center></ion-icon>
-  </ion-item>
+  </form>
 
-  <br>
-
-  <ion-item>
-    <ion-label position="floating">Nick</ion-label>
-    <ion-input type="text" required></ion-input>
-  </ion-item>
-
-  <br>
-
-  <ion-button color="tertiary" expand="block">Siguiente</ion-button>
 
   <ion-text class="ion-text-center">
-    <p><b>¿Ya tienes cuenta? <a color="tertiary">Inicia sesión</a></b></p>
+    <p *ngIf="register"><b>¿Ya tienes cuenta? <a color="tertiary" (click)="register = !register">Inicia sesión</a></b></p>
+    <p *ngIf="!register"><b>¿No tienes cuenta? <a color="tertiary" (click)="register = !register">Regístrate</a></b></p>
   </ion-text>
 </ion-content>
   
